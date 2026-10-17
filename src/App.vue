@@ -2,14 +2,16 @@
 
 <template>
   <!-- NAVBAR -->
-  <nav class="navbar navbar-expand-lg bg-white border-bottom shadow-sm">
+  <nav class="navbar navbar-expand-lg bg-light border-bottom shadow-sm">
     <div class="container py-2">
       <!-- BRAND -->
       <RouterLink
         to="/"
         class="navbar-brand d-flex align-items-center gap-2 fw-bold text-primary fs-4"
       >
-        <span class="fs-3">✈️</span>
+        <span class="fs-3"
+          ><img src="../src/assets/beograd.svg" class="img-fluid"
+        /></span>
         <span>BelgradeFlights</span>
       </RouterLink>
       <!-- /BRAND -->
@@ -43,19 +45,6 @@
         </ul>
         <!-- /LINKS -->
 
-        <!-- SEARCH -->
-        <form class="d-flex me-lg-3 mb-3 mb-lg-0">
-          <input
-            class="form-control me-2"
-            type="search"
-            placeholder="Search flights"
-            aria-label="Search flights"
-          />
-
-          <button class="btn btn-primary px-4" type="submit">Search</button>
-        </form>
-        <!-- /SEARCH -->
-
         <!-- BOOK FLIGHT -->
         <RouterLink to="/" class="btn btn-outline-primary px-4">
           ✈️ Book a flight
@@ -67,10 +56,6 @@
   <!-- /NAVBAR -->
 
   <!-- PAGE CONTENT -->
-  <div class="container">
-    <div class="row">
-      <RouterView />
-    </div>
-  </div>
+  <RouterView />
   <!-- /PAGE CONTENT -->
 </template>

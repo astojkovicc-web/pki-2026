@@ -28,12 +28,14 @@ export class FlightService {
         imgUrl: this.getImageUrl(obj),
         flightNumber: obj.flightNumber,
         scheduledAt: obj.scheduledAt,
+        estimatedAt: obj.estimatedAt,
       });
     }
-    return (flights = flights.sort(
+
+    return flights.sort(
       (a: any, b: any) =>
         new Date(a.scheduledAt).getTime() - new Date(b.scheduledAt).getTime(),
-    ));
+    );
   }
 
   static async getDepartureDetails(id: number) {
@@ -45,8 +47,22 @@ export class FlightService {
       params: {
         type: "departure",
         size: 10,
+        sort: "scheduledAt,asc",
       },
     });
+
+    let otherButFiltered = [];
+
+    for (let obj of other.data.content) {
+      if (obj.id !== details.data.id) {
+        otherButFiltered.push({
+          id: obj.id,
+          flightNumber: obj.flightNumber,
+          scheduledAt: obj.scheduledAt,
+          estimatedAt: obj.estimatedAt,
+        });
+      }
+    }
 
     return {
       id: details.data.id,
@@ -54,7 +70,8 @@ export class FlightService {
       imgUrl: this.getImageUrl(details.data),
       flightNumber: details.data.flightNumber,
       scheduledAt: details.data.scheduledAt,
-      other: other.data.content,
+      estimatedAt: details.data.estimatedAt,
+      other: otherButFiltered,
     };
   }
 

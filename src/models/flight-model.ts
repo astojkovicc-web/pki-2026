@@ -4,4 +4,5 @@ export interface FlightModel {
   imgUrl: string;
   flightNumber: string;
   scheduledAt: string;
+  estimatedAt: string | null;
 }
